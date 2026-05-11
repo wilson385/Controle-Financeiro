@@ -2,26 +2,29 @@
 
 ![React Native](https://img.shields.io/badge/React%20Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
 ---
 
 ## 📖 Sobre o Projeto
 
-O **Controle Financeiro** é um aplicativo mobile desenvolvido para ajudar usuários a organizarem seus gastos diários de forma simples, rápida e prática.
+O **Controle Financeiro** é um aplicativo mobile desenvolvido com React Native com o objetivo de ajudar pessoas a organizarem seus gastos diários de forma simples, prática e intuitiva.
 
-A aplicação permite registrar despesas, selecionar categorias e acompanhar os valores gastos no dia a dia, ajudando no controle financeiro pessoal.
+O usuário poderá registrar despesas, selecionar categorias, adicionar descrições e acompanhar seus gastos diretamente pelo celular.
+
+> ⚠️ O projeto ainda está em desenvolvimento.
 
 ---
 
 ## Funcionalidades
 
-- ✅ Cadastro de gastos diários
-- ✅ Seleção de categorias
-- ✅ Descrição do gasto realizado
-- ✅ Registro do valor gasto
-- ✅ Interface moderna e intuitiva
-- ✅ Organização financeira simplificada
+- Registro de gastos diários
+- Seleção de categorias
+- Descrição da despesa
+- Definição do valor gasto
+- Organização financeira de forma prática
+- Interface moderna e intuitiva
 
 ---
 
@@ -29,37 +32,35 @@ A aplicação permite registrar despesas, selecionar categorias e acompanhar os 
 
 O usuário poderá:
 
-- Selecionar uma categoria como:
+- Selecionar uma categoria, como:
   - 🍔 Almoço
-  - 🚗 Transporte
   - 🛒 Mercado
+  - 🚗 Transporte
   - 🎮 Lazer
+
+Depois disso, poderá:
 
 - Descrever o gasto realizado
 - Informar o valor gasto
-- Registrar tudo no aplicativo para acompanhar suas despesas
+- Salvar o registro no aplicativo
+
+O app armazenará todas as informações para ajudar no controle financeiro do dia a dia.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-<p align="left">
-  <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
-
-  <img src="https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white" />
-
-  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
-
-  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
-
-  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
-</p>
+- React Native
+- TypeScript
+- Expo
+- Git
+- GitHub
 
 ---
 
 ## Objetivo
 
-O objetivo do projeto é ajudar pessoas a terem mais controle sobre seus gastos financeiros, tornando a organização do dinheiro mais acessível através de um aplicativo simples e eficiente.
+O objetivo do projeto é facilitar o controle financeiro pessoal, ajudando usuários a entenderem melhor seus gastos e criarem mais consciência financeira no cotidiano.
 
 ---
 
