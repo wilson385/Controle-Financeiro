@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f3f4f6",
   },
-
+  //
   container2: {
     backgroundColor: "#5306E0",
     width: "100%",

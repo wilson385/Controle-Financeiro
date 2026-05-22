@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+//
 
 //useState é um Hook do React usado para guardar e atualizar informações na tela.
 //Ele permite que o componente “lembre” valores.
