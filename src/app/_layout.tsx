@@ -7,9 +7,11 @@ import { Stack } from "expo-router";
 export default function Layout() {
   return (
     <Stack
-      // serve para esconder o cabeçalho (header) das telas.
+      // screenOptions > é um objeto que define opções de configuração para as telas da navegação.
       screenOptions={{
+        // // headerShown > serve para esconder o cabeçalho (header) das telas.
         headerShown: false,
+        // contenStyle > funciona como um style aplicado na tela inteira da navegação.
         contentStyle: { backgroundColor: "transparent" },
       }}
     />

@@ -1,6 +1,6 @@
 export const cores = {
   gray: {
-    100: "#F4F4F5",
+    100: "#f8f8ff",
     200: "#E4E4E7",
     300: "#D4D4D8",
     400: "#A1A1AA",
