@@ -1,5 +1,6 @@
-// TouchableOpacity é um componente usado para criar áreas clicáveis, como botões.
-// Quando o usuário toca nele, a opacidade diminui automaticamente, dando um efeito visual de “botão pressionado”.
+// AsyncStorage é uma biblioteca que permite armazenar dados localmente no dispositivo do usuário.
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import {
   ScrollView,
   Text,
@@ -7,12 +8,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-//
 
-//useState é um Hook do React usado para guardar e atualizar informações na tela.
-//Ele permite que o componente “lembre” valores.
-// um estado (state) é basicamente uma informação que pode mudar durante o funcionamento da aplicação.
-import { useState } from "react";
+// useState → guarda e atualiza informações na tela.
+// useEffect → executa algo automaticamente quando app abre.
+import { useEffect, useState } from "react";
 
 import { styles } from "@/styles/indexStyle";
 
@@ -24,11 +23,9 @@ export default function index() {
 
   // categoriaSelecionada é a informação que guarda qual categoria o usuário escolheu (ex: alimentação, transporte, etc).
   // setCategoriaSelecionada é a função que atualiza essa informação.
-  // useState("") significa que o valor inicial de categoriaSelecionada é uma string vazia.
-  //Cria um estado. O "" significa: Então a categoria começa sem valor.
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("");
 
-  // estados dos inputs
+  // guardar e atualizar a descrição e o valor do gasto que o usuário está digitando.
   const [descricao, setDescricao] = useState("");
   const [valor, setValor] = useState("");
 
@@ -38,7 +35,7 @@ export default function index() {
     valor: number;
     categoria: string;
   };
-
+  // guarda e atualiza a lista de gastos do usuário. Inicialmente, é um array vazio.
   const [gastos, setGastos] = useState<Gasto[]>([]);
 
   // Aqui criamos um array (lista) com as categorias de gastos que o usuário pode escolher.
@@ -52,7 +49,44 @@ export default function index() {
     "Outros",
   ];
 
-  // função responsável por adicionar gasto
+  // pega os gastos
+  //transforma em texto
+  // Salva os gastos no celular do usuario.
+  async function salvarGastos(gastosAtualizados: Gasto[]) {
+    // uma lista de gastos
+    try {
+      await AsyncStorage.setItem("@gastos", JSON.stringify(gastosAtualizados)); // JSON.stringify transforma a lista de gastos em texto para poder salvar no celular.
+    } catch (error) {
+      // se der erro, mostra no console do computador
+      console.log(error);
+    }
+  }
+
+  // Cria uma função assíncrona para carregar os gastos salvos no celular do usuário.
+  async function carregarGastos() {
+    // try > “tente executar”
+    try {
+      //guardar os dados vindos do celular do usuário na variável gastosSalvos.
+      // getItem “buscar item”
+      const gastosSalvos = await AsyncStorage.getItem("@gastos");
+
+      // “se existir algo salvo”
+      if (gastosSalvos !== null) {
+        setGastos(JSON.parse(gastosSalvos)); // JSON.parse transforma o texto de volta para uma lista de gastos para mostrar na tela.
+        // setGastos atualiza estado
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // useEffect executa automaticamente quando o app abre
+  // Quando o app abrir, execute: carregarGastos()
+  useEffect(() => {
+    carregarGastos();
+  }, []); // o [] significa: execute apenas uma vez, quando o app abrir.
+
+  // FUNÇÃO RESPONSÁVEL POR ADICIONAR GASTO
   function adicionarGasto() {
     // validação simples
     if (descricao === "" || valor === "" || categoriaSelecionada === "") {
@@ -66,18 +100,30 @@ export default function index() {
       categoria: categoriaSelecionada,
     };
 
-    // adiciona novo gasto no array
-    setGastos([...gastos, novoGasto]);
+    // cria novo array atualizado
+    const gastosAtualizados = [...gastos, novoGasto];
+
+    // atualiza tela
+    setGastos(gastosAtualizados);
+
+    // salva no celular
+    salvarGastos(gastosAtualizados);
 
     // limpa inputs
     setDescricao("");
     setValor("");
   }
 
-  // soma todos os gastos
+  //////////////////////////////////////////////////////
+  // SOMA TODOS OS GASTOS
+  //////////////////////////////////////////////////////
+
   const totalGasto = gastos.reduce((total, item) => total + item.valor, 0);
 
-  // return > exibir algo na tela
+  //////////////////////////////////////////////////////
+  // RETURN
+  //////////////////////////////////////////////////////
+
   return (
     // ScrollView permite rolagem da tela
     <ScrollView style={styles.container1} showsVerticalScrollIndicator={false}>
