@@ -73,7 +73,7 @@ export default function index() {
       // “se existir algo salvo”
       if (gastosSalvos !== null) {
         setGastos(JSON.parse(gastosSalvos)); // JSON.parse transforma o texto de volta para uma lista de gastos para mostrar na tela.
-        // setGastos atualiza estado
+        // coloca os dados na tela
       }
     } catch (error) {
       console.log(error);
@@ -100,7 +100,8 @@ export default function index() {
       categoria: categoriaSelecionada,
     };
 
-    // cria novo array atualizado
+    // criar um novo array
+    //com os gastos antigos + o novo gasto
     const gastosAtualizados = [...gastos, novoGasto];
 
     // atualiza tela
@@ -114,18 +115,15 @@ export default function index() {
     setValor("");
   }
 
-  //////////////////////////////////////////////////////
   // SOMA TODOS OS GASTOS
-  //////////////////////////////////////////////////////
-
+  // O reduce() é um método usado para: reduzir vários valores em um único valor
+  // gastos.reduce()  Significa: “percorrer todos os gastos”
   const totalGasto = gastos.reduce((total, item) => total + item.valor, 0);
 
-  //////////////////////////////////////////////////////
   // RETURN
-  //////////////////////////////////////////////////////
-
   return (
     // ScrollView permite rolagem da tela
+    // showsVerticalScrollIndicator={false} esconde a barra de rolagem v
     <ScrollView style={styles.container1} showsVerticalScrollIndicator={false}>
       {/* HEADER */}
       <View style={styles.container2}>
@@ -135,13 +133,13 @@ export default function index() {
           {/* TOTAL GASTO */}
           <View style={styles.container4}>
             <Text style={styles.totalGasto}>TOTAL GASTO</Text>
-
-            <Text style={styles.valorGasto}>R$ {totalGasto.toFixed(2)}</Text>
+            <Text style={styles.valorGasto}>R$ {totalGasto.toFixed(2)}</Text> //
+            toFixed(2) 2 casas decimais
           </View>
         </View>
       </View>
 
-      {/* CONTAINER PRINCIPAL */}
+      {/* //  CONTAINER PRINCIPAL  */}
       <View style={styles.containerInfo}>
         <Text style={styles.subtitulo}>+ NOVO GASTO</Text>
 
@@ -152,44 +150,54 @@ export default function index() {
             placeholder="Descrição (ex: Almoço)"
             style={styles.inputDescricao}
             placeholderTextColor={"#9ca3af"}
+            // value mostra o valor atual do estado
             value={descricao}
+            // onChangeText > pega o que usuário digitou e salva no estado
             onChangeText={setDescricao}
           />
-
           {/* INPUT VALOR */}
           <TextInput
             placeholder="Valor"
             style={styles.inputDescricao}
             placeholderTextColor={"#9ca3af"}
             keyboardType="numeric"
+            // value mostra o valor atual do estado
             value={valor}
+            // onChangeText > pega o que usuário digitou e salva no estado
             onChangeText={setValor}
           />
-
           {/* BOTÃO MENU */}
+          // TouchableOpacity Cria botão clicável
           <TouchableOpacity
-            onPress={() => setMenuAberto(!menuAberto)}
+            onPress={() => setMenuAberto(!menuAberto)} // Se menu estiver: false vira: true
             style={styles.botaoCategoria}
           >
+            // SE ESTIVER VAZIA Mostra: Selecionar Categoria SENÃO Mostra: o
+            nome da categoria
             <Text style={styles.textoBotaoCategoria}>
               {categoriaSelecionada === ""
                 ? "Selecionar Categoria"
                 : categoriaSelecionada}
             </Text>
           </TouchableOpacity>
-
           {/* MENU DE CATEGORIAS */}
+          {/* // {menuAberto && ( “só mostre isso se menuAberto for true” */}
           {menuAberto && (
             <View style={styles.menuCategorias}>
+              {/*  categorias.map((item) => ( Percorre todas categorias.  */}
+              {/* O map cria: um botão para cada categoria */}
               {categorias.map((item) => (
                 <TouchableOpacity
                   key={item}
+                  // onPress={() => {}} “quando clicar, execute tudo que está aqui dentro”
                   onPress={() => {
+                    // usuario clicou em uma categoria, então: “guarde essa categoria como selecionada” e “feche o menu”
                     setCategoriaSelecionada(item);
                     setMenuAberto(false);
                   }}
                   style={{
                     backgroundColor:
+                      // SE essa categoria estiver selecionada → botão roxo SENÃO→ botão cinza
                       categoriaSelecionada === item ? "#5306E0" : "#e5e7eb",
 
                     padding: 15,
@@ -199,20 +207,23 @@ export default function index() {
                 >
                   <Text
                     style={{
+                      // SE categoria estiver selecionada → texto branco SENÃO → texto preto
                       color: categoriaSelecionada === item ? "#fff" : "#000",
 
                       fontSize: 16,
                     }}
                   >
+                    {/* // mostra o nome da categoria (ex: alimentação, transporte, etc) */}
                     {item}
                   </Text>
                 </TouchableOpacity>
               ))}
             </View>
           )}
-
           {/* BOTÃO ADICIONAR */}
           <TouchableOpacity
+            // onPress={adicionarGasto} “quando clicar, execute a função adicionarGasto”
+            // pega descrição pega valor pega categoria cria objeto salva no array gastos atualiza a tela
             onPress={adicionarGasto}
             style={styles.botaoAdicionar}
           >
@@ -230,23 +241,28 @@ export default function index() {
           </View>
 
           <Text style={styles.legendaGrafico}>
-            ● {categoriaSelecionada || "Sem categoria"}
+            // “se valor1 existir, use ele, senao, SE ESTIVER VAZIO mostra: Sem
+            categoria ● {categoriaSelecionada || "Sem categoria"}
           </Text>
         </View>
 
         {/* HISTÓRICO */}
         <View style={styles.containerHistorico}>
           <Text style={styles.tituloHistorico}>HISTÓRICO RECENTE</Text>
-
+          {/* // map() percorre arrays. fica algo assim:   descricao: "Pizza", valor: 50, categoria: "Lazer"*/}
           {gastos.map((item, index) => (
+            // para cada gasto, crie um card mostrando a descrição, categoria e valor do gasto
+            // key={index} é importante para o React identificar cada item da lista. index é a posição do item no array.
             <View key={index} style={styles.cardHistorico}>
               <View>
+                {/* // a descrição do gasto EXEMPLO Pizza  */}
                 <Text style={styles.nomeGasto}>{item.descricao}</Text>
-
+                {/* // MOSTRA a categoria, EXEMPLO Lazer */}
                 <Text style={styles.categoriaGasto}>{item.categoria}</Text>
               </View>
 
               <Text style={styles.valorHistorico}>
+                {/* toFixed(2)? Formata número. 50 vira 50.00 */}
                 R$ {item.valor.toFixed(2)}
               </Text>
             </View>
@@ -256,9 +272,3 @@ export default function index() {
     </ScrollView>
   );
 }
-/* // TextInput é um campo de texto onde o usuário pode digitar algo
-// categorias.map() é uma função que percorre cada item do array categorias e cria um botão para cada categoria.
-// key={item} serve como identidade unica para cada item da lista, ajudando o React a identificar qual item foi clicado.
-// onPress é um evento. quando o usuário tocar aqui, faça alguma coisa
-// “ onPress={() => setCategoriaSelecionada(item)} quando o usuário tocar aqui, faça alguma coisa”
-// () => cria uma função anônima. Ela funciona como: “guarde essa ação para depois” */
