@@ -133,8 +133,8 @@ export default function index() {
           {/* TOTAL GASTO */}
           <View style={styles.container4}>
             <Text style={styles.totalGasto}>TOTAL GASTO</Text>
-            <Text style={styles.valorGasto}>R$ {totalGasto.toFixed(2)}</Text> //
-            toFixed(2) 2 casas decimais
+            {/* //toFixed(2) 2 casas decimais */}
+            <Text style={styles.valorGasto}>R$ {totalGasto.toFixed(2)}</Text>
           </View>
         </View>
       </View>
@@ -167,13 +167,13 @@ export default function index() {
             onChangeText={setValor}
           />
           {/* BOTÃO MENU */}
-          // TouchableOpacity Cria botão clicável
+          {/* // TouchableOpacity Cria botão clicável */}
           <TouchableOpacity
             onPress={() => setMenuAberto(!menuAberto)} // Se menu estiver: false vira: true
             style={styles.botaoCategoria}
           >
-            // SE ESTIVER VAZIA Mostra: Selecionar Categoria SENÃO Mostra: o
-            nome da categoria
+            {/* // SE ESTIVER VAZIA Mostra: Selecionar Categoria SENÃO Mostra: o
+            nome da categoria */}
             <Text style={styles.textoBotaoCategoria}>
               {categoriaSelecionada === ""
                 ? "Selecionar Categoria"
@@ -241,7 +241,7 @@ export default function index() {
           </View>
 
           <Text style={styles.legendaGrafico}>
-            // “se valor1 existir, use ele, senao, SE ESTIVER VAZIO mostra: Sem
+            {/* // “se valor1 existir, use ele, senao, SE ESTIVER VAZIO mostra: Sem */}
             categoria ● {categoriaSelecionada || "Sem categoria"}
           </Text>
         </View>
