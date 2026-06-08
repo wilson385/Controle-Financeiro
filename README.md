@@ -60,7 +60,7 @@ O app armazenará todas as informações para ajudar no controle financeiro do d
 
 ## Objetivo
 
-O objetivo do projeto é facilitar o controle financeiro pessoal, ajudando usuários a entenderem melhor seus gastos e criarem mais consciência financeira no cotidiano.
+O objetivo do projeto é facilitar o controle financeiro pessoal, ajudando usuários a entenderem melhor seus gastos e criarem mais consciência financeira no cotidiano..
 
 ---
 
