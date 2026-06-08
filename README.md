@@ -66,7 +66,7 @@ O objetivo do projeto é facilitar o controle financeiro pessoal, ajudando usuá
 
 ## 👨‍💻 Desenvolvido por
 
-**Wilson Oliveira**
-**Kamilly Vitória**
+**Wilson Oliveira**,
+**Kamilly Vitória**,
 **Douglas Henrique**  
 🚀 Desenvolvedor Web e Mobile
